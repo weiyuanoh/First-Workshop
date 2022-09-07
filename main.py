@@ -9,4 +9,4 @@ import pandas as pd
 df= pd.read_csv("BTC-USD.csv")
 print(df.head())
 
-adsfasdf
+
