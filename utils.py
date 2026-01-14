@@ -1,6 +1,11 @@
 import pandas as pd
 import numpy as np
 
+
+def _to_month_period_index(idx) -> pd.PeriodIndex:
+    return pd.to_datetime(idx).to_period("M")
+
+
 def get_ffme_returns():
     """
     Load the Fama-French Dataset for the returns of the Top and Bottom Deciles by MarketCap
@@ -40,13 +45,13 @@ def get_ind_file(filetype, weighting="vw", n_inds=30):
         weighting is one of "ew", "vw"
         number of inds is 30 or 49
     """    
-    if filetype is "returns":
+    if filetype == "returns":
         name = f"{weighting}_rets" 
         divisor = 100
-    elif filetype is "nfirms":
+    elif filetype == "nfirms":
         name = "nfirms"
         divisor = 1
-    elif filetype is "size":
+    elif filetype == "size":
         name = "size"
         divisor = 1
     else:
@@ -330,7 +335,8 @@ def msr(riskfree_rate, er, cov, **kwargs):
     """
     n = er.shape[0]
     init_guess = np.repeat(1/n, n)
-    bounds = ((0.0, 1.0),) * n # an N-tuple of 2-tuples!
+    bounds = ((0.0, 0.2),) * n # an N-tuple of 2-tuples! # bound of weight of each stock to be < 0.2 of portfolio
+
     # construct the constraints
     weights_sum_to_1 = {'type': 'eq',
                         'fun': lambda weights: np.sum(weights) - 1
