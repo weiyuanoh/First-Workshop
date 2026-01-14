@@ -584,6 +584,32 @@ def run_factor_model(data, dependentVar, factorNames, method, options):
     else:
         print ('Method ' + method + ' not supported')
 
+def principal_componenent_analysis(data_cov): 
+    '''
+    performs principal componenet analysis for covariance matrix of data for dimension reduction 
+    
+    INPUTS
+    1. cov_data: covariance matrix of data.  
+    2. k: number of principal components to be kept 
+
+    OUTPUT
+    1. Top K principal components
+    2. List of principal components variance 
+    '''
+
+
+def PCA_transformation():
+    '''
+
+
+    OUTPUTS: 
+    1. Dataframe of transformed return series after PCA. 
+    '''
+
+
+
+
+
 # Function to create a time series of factor loadings using a trailing window
 def compute_trailing_factor_regressions(data, dependentVar, factorNames, window, method, options, dateCol='Date', printTime=False):
     '''compute_trailing_factor_regressions computes the factor regresssions using a trailing window, returns a pandas df object
